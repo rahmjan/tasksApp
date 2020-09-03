@@ -1,0 +1,58 @@
+-- Adminer 4.7.7 PostgreSQL dump
+
+DROP TABLE IF EXISTS "tasks";
+DROP SEQUENCE IF EXISTS "tasks_ID_seq";
+CREATE SEQUENCE "tasks_ID_seq" INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."tasks" (
+    "ID" integer DEFAULT nextval('"tasks_ID_seq"') NOT NULL,
+    "Name" text DEFAULT 'noName' NOT NULL,
+    "Description" text DEFAULT 'noDescription' NOT NULL,
+    "Status" character(1) DEFAULT 'N' NOT NULL,
+    "Solution" text DEFAULT 'noSolution' NOT NULL
+) WITH (oids = false);
+
+INSERT INTO "tasks" ("ID", "Name", "Description", "Status", "Solution") VALUES
+(0,	'Go home task',	'You are a lazy person, so go home and have a nice day.',	'N',	'noSolution');
+
+DROP TABLE IF EXISTS "teams";
+DROP SEQUENCE IF EXISTS "teams_ID_seq";
+CREATE SEQUENCE "teams_ID_seq" INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."teams" (
+    "ID" integer DEFAULT nextval('"teams_ID_seq"') NOT NULL,
+    "Name" text DEFAULT 'noName' NOT NULL,
+    "Description" text DEFAULT 'noDescription' NOT NULL
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "users";
+DROP SEQUENCE IF EXISTS "users_ID_seq";
+CREATE SEQUENCE "users_ID_seq" INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."users" (
+    "ID" integer DEFAULT nextval('"users_ID_seq"') NOT NULL,
+    "Name" text DEFAULT 'noName' NOT NULL,
+    "Surname" text DEFAULT 'noSurame' NOT NULL,
+    "Email" text DEFAULT 'noEmail' NOT NULL,
+    "Privileges" bit(8) DEFAULT '0' NOT NULL
+) WITH (oids = false);
+
+INSERT INTO "users" ("ID", "Name", "Surname", "Email", "Privileges") VALUES
+(0,	'Jan',	'Rahm',	'rahmjan@gmail.com',	'00000111');
+
+DROP TABLE IF EXISTS "users_tasks";
+CREATE TABLE "public"."users_tasks" (
+    "user" integer DEFAULT '-1' NOT NULL,
+    "task" integer DEFAULT '-1' NOT NULL
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "users_teams";
+CREATE TABLE "public"."users_teams" (
+    "user" integer DEFAULT '-1' NOT NULL,
+    "team" integer DEFAULT '-1' NOT NULL
+) WITH (oids = false);
+
+
+-- 2020-09-03 10:03:38.187216+00
