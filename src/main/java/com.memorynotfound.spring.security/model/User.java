@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name="\"user\"", uniqueConstraints = @UniqueConstraint(columnNames = "email")) // because 'user' is keyword in PostgreSQL
 public class User {
 
     @Id
