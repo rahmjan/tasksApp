@@ -1,7 +1,7 @@
-package com.memorynotfound.spring.security.service;
+package com.jr.service;
 
-import com.memorynotfound.spring.security.model.User;
-import com.memorynotfound.spring.security.web.dto.UserRegistrationDto;
+import com.jr.model.User;
+import com.jr.web.dto.UserRegistrationDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService {

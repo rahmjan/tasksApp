@@ -1,7 +1,7 @@
-package com.memorynotfound.spring.security.config;
+package com.jr.config;
 
-import com.memorynotfound.spring.security.service.UserService;
-import com.memorynotfound.spring.security.service.UserServiceImpl;
+import com.jr.service.UserService;
+import com.jr.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

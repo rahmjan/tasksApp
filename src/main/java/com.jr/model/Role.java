@@ -1,4 +1,4 @@
-package com.memorynotfound.spring.security.model;
+package com.jr.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

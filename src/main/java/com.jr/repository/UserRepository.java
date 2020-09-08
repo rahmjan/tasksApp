@@ -1,6 +1,6 @@
-package com.memorynotfound.spring.security.repository;
+package com.jr.repository;
 
-import com.memorynotfound.spring.security.model.User;
+import com.jr.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

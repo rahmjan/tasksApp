@@ -1,8 +1,8 @@
-package com.memorynotfound.spring.security.web;
+package com.jr.web;
 
-import com.memorynotfound.spring.security.model.User;
-import com.memorynotfound.spring.security.service.UserService;
-import com.memorynotfound.spring.security.web.dto.UserRegistrationDto;
+import com.jr.model.User;
+import com.jr.service.UserService;
+import com.jr.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

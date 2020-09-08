@@ -1,4 +1,4 @@
-package com.memorynotfound.spring.security.constraint;
+package com.jr.constraint;
 
 import javax.validation.Payload;
 import javax.validation.Constraint;

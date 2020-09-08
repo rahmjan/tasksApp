@@ -1,9 +1,9 @@
-package com.memorynotfound.spring.security.service;
+package com.jr.service;
 
-import com.memorynotfound.spring.security.model.Role;
-import com.memorynotfound.spring.security.model.User;
-import com.memorynotfound.spring.security.repository.UserRepository;
-import com.memorynotfound.spring.security.web.dto.UserRegistrationDto;
+import com.jr.model.Role;
+import com.jr.model.User;
+import com.jr.repository.UserRepository;
+import com.jr.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

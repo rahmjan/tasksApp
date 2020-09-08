@@ -1,6 +1,6 @@
-package com.memorynotfound.spring.security.web.dto;
+package com.jr.web.dto;
 
-import com.memorynotfound.spring.security.constraint.FieldMatch;
+import com.jr.constraint.FieldMatch;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.AssertTrue;

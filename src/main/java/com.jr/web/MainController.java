@@ -1,4 +1,4 @@
-package com.memorynotfound.spring.security.web;
+package com.jr.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

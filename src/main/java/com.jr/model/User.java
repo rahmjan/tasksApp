@@ -1,4 +1,4 @@
-package com.memorynotfound.spring.security.model;
+package com.jr.model;
 
 import javax.persistence.*;
 import java.util.Collection;
