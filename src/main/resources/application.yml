@@ -1,0 +1,30 @@
+# ===============================
+# = Hibernate datasource
+# ===============================
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/database
+    username: admin
+    password: admin
+    driverClassName: org.postgresql.Driver
+
+# ===============================
+# = JPA configurations
+# ===============================
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: POSTGRESQL
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# ===============================
+# = Logging configurations
+# ===============================
+logging:
+  level:
+    root: WARN
+    com.memorynotfound: DEBUG
+    org.springframework.web: INFO
+    org.springframework.security: INFO
