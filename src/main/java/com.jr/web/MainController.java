@@ -17,8 +17,8 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping("/user")
-    public String userIndex() {
-        return "user/index";
+    @GetMapping("/createTask")
+    public String createTask(Model model) {
+        return "createTask";
     }
 }

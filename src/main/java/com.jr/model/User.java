@@ -10,10 +10,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    
+    @Column(columnDefinition="TEXT")
     private String firstName;
+
+    @Column(columnDefinition="TEXT")
     private String lastName;
+
+    @Column(columnDefinition="TEXT")
     private String email;
+
+    @Column(columnDefinition="TEXT")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
