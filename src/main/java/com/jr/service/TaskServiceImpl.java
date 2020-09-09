@@ -2,7 +2,7 @@ package com.jr.service;
 
 import com.jr.model.Task;
 import com.jr.repository.TaskRepository;
-import com.jr.web.dto.CreateTaskDto;
+import com.jr.controller.dto.CreateTaskDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

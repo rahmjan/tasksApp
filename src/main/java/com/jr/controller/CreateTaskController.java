@@ -1,8 +1,8 @@
-package com.jr.web;
+package com.jr.controller;
 
 import com.jr.model.Task;
 import com.jr.service.TaskService;
-import com.jr.web.dto.CreateTaskDto;
+import com.jr.controller.dto.CreateTaskDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

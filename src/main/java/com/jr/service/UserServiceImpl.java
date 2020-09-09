@@ -3,7 +3,7 @@ package com.jr.service;
 import com.jr.model.Role;
 import com.jr.model.User;
 import com.jr.repository.UserRepository;
-import com.jr.web.dto.UserRegistrationDto;
+import com.jr.controller.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

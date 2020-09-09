@@ -7,7 +7,7 @@ import java.util.Set;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Task {
 
-    public enum Status {};
+    public enum Status {NEW, ACTIVE, DONE, CLOSED};
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

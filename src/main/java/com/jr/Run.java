@@ -1,10 +1,7 @@
-package com.jr.web;
+package com.jr;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-
-//@ComponentScan(basePackages = {"com.jr.repository"})
 
 @SpringBootApplication
 public class Run {

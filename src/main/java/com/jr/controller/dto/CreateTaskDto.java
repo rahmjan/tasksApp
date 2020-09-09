@@ -1,4 +1,4 @@
-package com.jr.web.dto;
+package com.jr.controller.dto;
 
 import com.jr.model.*;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -15,7 +15,6 @@ public class CreateTaskDto {
 
     private String solution;
 
-    @NotEmpty
     private Task.Status status;
 
     private Set<User> users;
@@ -29,7 +28,7 @@ public class CreateTaskDto {
     }
 
     public String getDescription() {
-        return name;
+        return description;
     }
 
     public void setDescription(String description) {
