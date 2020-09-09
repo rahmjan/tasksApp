@@ -2,6 +2,7 @@ package com.jr.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name="\"user\"", uniqueConstraints = @UniqueConstraint(columnNames = "email")) // because 'user' is keyword in PostgreSQL
@@ -31,6 +32,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
+
+    @ManyToMany(mappedBy = "users")
+    private Set<Task> tasks;
 
     public User() {
     }
@@ -96,6 +100,14 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setRoles(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override

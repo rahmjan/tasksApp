@@ -17,8 +17,8 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping("/createTask")
-    public String createTask(Model model) {
-        return "createTask";
+    @GetMapping("/myTasks")
+    public String myTask(Model model) {
+        return "myTasks";
     }
 }
