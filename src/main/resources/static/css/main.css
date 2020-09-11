@@ -9,7 +9,3 @@ h1 {
 .error-message:first-letter {
     text-transform: capitalize;
 }
-
-body {
-    padding-top: 55px;
-}

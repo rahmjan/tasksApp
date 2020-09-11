@@ -4,6 +4,7 @@ import com.jr.model.Role;
 import com.jr.model.User;
 import com.jr.repository.UserRepository;
 import com.jr.controller.dto.UserRegistrationDto;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,8 +39,14 @@ public class UserServiceImpl implements UserService {
             mapRolesToAuthorities(user.getRoles()));
     }
 
+    @Override
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
     }
 
     public User save(UserRegistrationDto registration){

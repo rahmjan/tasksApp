@@ -5,22 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 
     <title>Tasks App</title>
 </head>
 
 <body>
-<div th:replace="fragments/header :: header">Header</div>
-<div class="container">
-    <div class="text-center">    
-        <h1>Beginning of the App</h1>
-    </div>
+<div th:replace="fragments/menu :: menu">Menu</div>
+
+<div class="container text-center">
+    <h1>Beginning of the App</h1>
 </div>
 
-<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
 
 </body>
 </html>

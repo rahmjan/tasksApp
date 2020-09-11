@@ -1,7 +1,9 @@
 package com.jr.controller;
 
 import com.jr.model.Task;
+import com.jr.model.User;
 import com.jr.service.TaskService;
+import com.jr.service.UserService;
 import com.jr.controller.dto.CreateTaskDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+
 import javax.validation.Valid;
 
 @Controller
@@ -20,9 +25,17 @@ public class CreateTaskController {
     @Autowired
     private TaskService taskService;
 
+    @Autowired
+    private UserService userService;
+
     @ModelAttribute("task")
     public CreateTaskDto createTaskDto() {
         return new CreateTaskDto();
+    }
+
+    @ModelAttribute("allUsers")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @GetMapping

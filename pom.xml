@@ -55,19 +55,25 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
-            <version>3.3.7</version>
+            <version>4.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap-select</artifactId>
+            <version>1.13.17</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
-            <version>3.2.1</version>
+            <version>3.5.1</version>
         </dependency>
 
 		<!-- postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.2.2.jre7</version>
+			<version>42.2.16.jre7</version>
     	</dependency>
         
         <!-- testing -->
