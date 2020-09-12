@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,8 +45,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
+    public Set<User> getAllUsers(){
+        return userRepository.findAll().stream().collect(Collectors.toSet());
     }
 
     public User save(UserRegistrationDto registration){

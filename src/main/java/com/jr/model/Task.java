@@ -25,13 +25,13 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_tasks",
             joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
+                    name = "task_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "task_id", referencedColumnName = "id"))
+                    name = "user_id", referencedColumnName = "id"))
     private Set<User> users;
 
     public Task() {

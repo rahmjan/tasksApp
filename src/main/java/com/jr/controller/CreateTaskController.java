@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -34,7 +34,7 @@ public class CreateTaskController {
     }
 
     @ModelAttribute("allUsers")
-    public List<User> getAllUsers() {
+    public Set<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
@@ -47,6 +47,7 @@ public class CreateTaskController {
     public String createTask(@ModelAttribute("task") @Valid CreateTaskDto taskDto, BindingResult result){
 
         Task existing = taskService.findByName(taskDto.getName());
+    
         if (existing != null){
             result.rejectValue("name", null, "There is already an task with the same name");
         }
