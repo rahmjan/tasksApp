@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
-     <div th:replace="fragments/head :: head">Head</div>
+    <div th:replace="fragments/head :: head">Head</div>
   </head>
   
   <body>
     <div th:replace="fragments/menu :: menu">Menu</div>
 
-    <select class="selectpicker" data-live-search="true">
-        <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-        <option data-tokens="mustard">Burger, Shake and a Smile</option>
-        <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-    </select>
+    <div class="container">
+      <div class="row col-md-8 mx-auto">
+        <h1>My tasks</h1>
+        
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="task, iter : ${currentUserTasks}">
+              <th scope="row" th:text="${iter.index+1}"></th>
+              <td  th:text="${task.name}"></td>
+              <td  th:text="${task.description}"></td>
+              <td  th:text="${task.status}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
   </body>
 </html>

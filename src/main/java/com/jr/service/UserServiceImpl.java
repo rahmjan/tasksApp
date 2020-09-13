@@ -27,12 +27,15 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    private User currentUser;
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
         if (user == null){
             throw new UsernameNotFoundException("Invalid username or password.");
         }
+        currentUser = user;
         return new org.springframework.security.core.userdetails.User(
             user.getEmail(),
             user.getPassword(),
@@ -42,6 +45,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User getCurrentUser() { 
+        return currentUser;
     }
 
     @Override
