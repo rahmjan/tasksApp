@@ -11,14 +11,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
+            
             <h1>Creation of a new task</h1>
-            <div th:if="${param.success}">
+            <div th:if="${param.successCreate}">
                 <div class="alert alert-info">
                     You've successfully created a new task!
                 </div>
             </div>
 
-            <form th:action="@{/createTask}" th:object="${task}" method="post">
+            <form th:action="@{${actionAtt}}" th:object="${taskDto}" method="post">
                 <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? 'has-error' : ''">
                     <label for="name" class="control-label">Name</label>
                     <input id="name" class="form-control" th:field="*{name}"/>
@@ -46,7 +47,7 @@
                 </div>
                 
                 <div class="form-group" th:classappend="${#fields.hasErrors('users')} ? 'has-error' : ''">
-                    <label for="searchField" class="control-label">Select users</label>
+                    <label for="searchField" class="control-label">Select participants</label>
                     <select id="searchField" class="form-control selectpicker" multiple="multiple" data-live-search="true" th:field="*{users}">
                         <option th:each="user : ${allUsers}" th:value="${{user}}" th:text="${user.lastName}+' '+${user.firstName}+', '+${user.email}"></option>
                     </select>

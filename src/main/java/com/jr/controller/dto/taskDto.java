@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import java.util.Set;
 
-public class CreateTaskDto {
+public class taskDto {
 
     @NotEmpty
     private String name;

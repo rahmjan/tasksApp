@@ -1,6 +1,6 @@
 package com.jr.controller;
 
-import com.jr.service.TaskService;
+// import com.jr.service.TaskService;
 import com.jr.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class InformationController {
-    @Autowired
-    private TaskService taskService;
+    // @Autowired
+    // private TaskService taskService;
 
     @Autowired
     private UserService userService;
