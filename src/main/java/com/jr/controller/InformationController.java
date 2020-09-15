@@ -1,5 +1,6 @@
 package com.jr.controller;
 
+import com.jr.service.TaskService;
 // import com.jr.service.TaskService;
 import com.jr.service.UserService;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class InformationController {
@@ -17,11 +19,22 @@ public class InformationController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/myTasks")
+    @Autowired
+    private TaskService taskService;
+
+    @RequestMapping("/showTasks")
     @GetMapping
-    public String showMyTaskForm(Model model) {
-        model.addAttribute("currentUser", userService.getCurrentUser());
-        model.addAttribute("currentUserTasks", userService.getCurrentUser().getTasks());
-        return "myTasks";
+    public String showMyTaskForm(@RequestParam(required = false, defaultValue = "me") String user, Model model) {
+
+        if (user.equals("me")) {
+            model.addAttribute("title", "My tasks");
+            model.addAttribute("iterTasks", userService.getCurrentUser().getTasks());
+        }
+        else if (user.equals("all")) {
+            model.addAttribute("title", "All tasks in the database");
+            model.addAttribute("iterTasks", taskService.getAllTasks());
+        }
+        
+        return "showTasks";
     }
 }

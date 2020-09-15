@@ -9,7 +9,7 @@
 
     <div class="container">
       <div class="row col-md-8 mx-auto">
-        <h1>My tasks</h1>
+        <h1 th:text="${title}"></h1>
         
         <table class="table table-striped">
           <thead>
@@ -21,7 +21,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:each="task, iter : ${currentUserTasks}" class="clickable" th:onclick="'window.location=\'task?name=' + ${task.name} + '\''"> 
+            <tr th:each="task, iter : ${iterTasks}" class="clickable" th:onclick="'window.location=\'task?name=' + ${task.name} + '\''"> 
               <th scope="row" th:text="${iter.index+1}"></th>
               <td th:text="${task.name}"></td>
               <td th:text="${task.description}"></td>
