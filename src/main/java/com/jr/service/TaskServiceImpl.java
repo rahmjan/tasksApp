@@ -21,9 +21,6 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    @PersistenceContext
-    private EntityManager entityMgr;
-
     @Override
     public Task findByName(String name) {
         return taskRepository.findByName(name);
@@ -37,12 +34,12 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     public Task save(taskDto newTask) {
         
-        Boolean refresh = true;
+        Boolean save = false;
         Task task = findByName(newTask.getName());
 
         if (task == null) {
             task = new Task();
-            refresh = false;
+            save = true;
         }
 
         task.setName(newTask.getName());
@@ -51,16 +48,10 @@ public class TaskServiceImpl implements TaskService {
         task.setStatus(newTask.getStatus());
         task.setUsers(newTask.getUsers());
 
-        task = taskRepository.save(task);
-        // taskRepository.persist(task);
 
-        if (refresh) {
-            taskRepository.refresh(task);
+        if (save) {
+            task = taskRepository.save(task);
         }
-        else {
-            //taskRepository.persist(task);
-        }
-
         return task;
     }
 }

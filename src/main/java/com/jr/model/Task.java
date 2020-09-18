@@ -25,7 +25,7 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "users_tasks",
             joinColumns = @JoinColumn(
@@ -63,7 +63,7 @@ public class Task {
     }
 
     public String getDescription() {
-        return name;
+        return description;
     }
 
     public void setDescription(String description) {
