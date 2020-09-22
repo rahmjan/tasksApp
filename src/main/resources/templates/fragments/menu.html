@@ -18,10 +18,10 @@
                         <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/task' ? 'active' : ''}">
                             <a class="nav-link" th:href="@{/task}">Create task</a>
                         </li>
-                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/showTasks?user=me' ? 'active' : ''}">
+                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/showTasks' and #httpServletRequest.getQueryString() == 'user=me' ? 'active' : ''}">
                             <a class="nav-link" th:href="@{/showTasks?user=me}">My tasks</a>
                         </li>
-                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/showTasks?user=all' ? 'active' : ''}">
+                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/showTasks' and #httpServletRequest.getQueryString() == 'user=all' ? 'active' : ''}">
                             <a class="nav-link" th:href="@{/showTasks?user=all}">All tasks</a>
                         </li>
                     </ul>

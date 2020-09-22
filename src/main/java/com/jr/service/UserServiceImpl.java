@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    private User currentUser;
+    private String currentUser;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -36,7 +35,9 @@ public class UserServiceImpl implements UserService {
         if (user == null){
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        currentUser = user;
+
+        currentUser = user.getEmail();
+
         return new org.springframework.security.core.userdetails.User(
             user.getEmail(),
             user.getPassword(),
@@ -49,10 +50,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public User getCurrentUser() { 
-        // userRepository.merge(currentUser);
-        return currentUser;
+        return userRepository.findByEmail(currentUser);
     }
 
     @Override

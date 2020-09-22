@@ -1,7 +1,7 @@
 package com.jr.controller;
 
+import com.jr.model.User;
 import com.jr.service.TaskService;
-// import com.jr.service.TaskService;
 import com.jr.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class InformationController {
-    // @Autowired
-    // private TaskService taskService;
 
     @Autowired
     private UserService userService;
@@ -33,6 +31,11 @@ public class InformationController {
         else if (user.equals("all")) {
             model.addAttribute("title", "All tasks in the database");
             model.addAttribute("iterTasks", taskService.getAllTasks());
+        }
+        else {
+            User u = userService.findByEmail(user);
+            model.addAttribute("title", u.getFirstName() + " " + u.getLastName() + "'s tasks'");
+            model.addAttribute("iterTasks", u.getTasks());
         }
         
         return "showTasks";

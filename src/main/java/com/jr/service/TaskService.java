@@ -10,6 +10,8 @@ public interface TaskService {
 
     Task findByName(String name);
 
+    Boolean deleteByName(String name);
+
     Set<Task> getAllTasks();
 
     Task save(taskDto newTask);

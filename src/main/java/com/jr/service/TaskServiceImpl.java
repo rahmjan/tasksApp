@@ -6,9 +6,6 @@ import com.jr.repository.TaskRepository;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import com.jr.controller.dto.taskDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +45,17 @@ public class TaskServiceImpl implements TaskService {
         task.setStatus(newTask.getStatus());
         task.setUsers(newTask.getUsers());
 
-
         if (save) {
             task = taskRepository.save(task);
         }
         return task;
+    }
+
+    @Override
+    public Boolean deleteByName(String name) {
+        if (taskRepository.deleteByName(name) > 0) {
+            return true;
+        }
+        return false;
     }
 }
