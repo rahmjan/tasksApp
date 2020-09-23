@@ -3,7 +3,8 @@ package com.jr.service;
 import com.jr.model.Role;
 import com.jr.model.User;
 import com.jr.repository.UserRepository;
-import com.jr.web.dto.UserRegistrationDto;
+import com.jr.controller.dto.UserRegistrationDto;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,20 +27,36 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    private String currentUser;
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
         if (user == null){
             throw new UsernameNotFoundException("Invalid username or password.");
         }
+
+        currentUser = user.getEmail();
+
         return new org.springframework.security.core.userdetails.User(
             user.getEmail(),
             user.getPassword(),
             mapRolesToAuthorities(user.getRoles()));
     }
 
+    @Override
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User getCurrentUser() { 
+        return userRepository.findByEmail(currentUser);
+    }
+
+    @Override
+    public Set<User> getAllUsers(){
+        return userRepository.findAll().stream().collect(Collectors.toSet());
     }
 
     public User save(UserRegistrationDto registration){

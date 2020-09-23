@@ -1,8 +1,8 @@
-package com.jr.web;
+package com.jr.controller;
 
 import com.jr.model.User;
 import com.jr.service.UserService;
-import com.jr.web.dto.UserRegistrationDto;
+import com.jr.controller.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

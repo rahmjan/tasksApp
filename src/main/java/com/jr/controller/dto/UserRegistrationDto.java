@@ -1,4 +1,4 @@
-package com.jr.web.dto;
+package com.jr.controller.dto;
 
 import com.jr.constraint.FieldMatch;
 import org.hibernate.validator.constraints.Email;
