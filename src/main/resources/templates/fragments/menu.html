@@ -24,6 +24,9 @@
                         <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/showTasks' and #httpServletRequest.getQueryString() == 'user=all' ? 'active' : ''}">
                             <a class="nav-link" th:href="@{/showTasks?user=all}">All tasks</a>
                         </li>
+                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/showUsers' and #httpServletRequest.getQueryString() == 'user=all' ? 'active' : ''}">
+                            <a class="nav-link" th:href="@{/showUsers?user=all}">All users</a>
+                        </li>
                     </ul>
 
                     <form class="form-inline my-2 my-md-0" method="post" action="#" th:action="@{/logout}">     

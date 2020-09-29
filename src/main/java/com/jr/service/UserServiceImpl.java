@@ -3,6 +3,7 @@ package com.jr.service;
 import com.jr.model.Role;
 import com.jr.model.User;
 import com.jr.repository.UserRepository;
+import com.jr.controller.dto.UserDto;
 import com.jr.controller.dto.UserRegistrationDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -59,6 +62,17 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll().stream().collect(Collectors.toSet());
     }
 
+    @Override
+    @Transactional
+    public User update(UserDto userDto) {
+        User u = userRepository.findByEmail(userDto.getPrevEmail());
+        u.setFirstName(userDto.getFirstName());
+        u.setLastName(userDto.getLastName());
+        u.setEmail(userDto.getEmail());
+        return u;
+    }
+
+    @Override
     public User save(UserRegistrationDto registration){
         User user = new User();
         user.setFirstName(registration.getFirstName());
@@ -67,6 +81,14 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
         return userRepository.save(user);
+    }
+
+    @Override
+    public Boolean deleteByEmail(String email) {
+        if (userRepository.deleteByEmail(email) > 0) {
+            return true;
+        }
+        return false;
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){

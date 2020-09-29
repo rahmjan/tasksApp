@@ -41,7 +41,7 @@ public class TaskController {
 
         if (existing != null){
             model.addAttribute("title", "Task details");
-            model.addAttribute("taskDto", existing);
+            model.addAttribute("taskDto", new taskDto(existing));
             model.addAttribute("actionAtt", "/task");
         }
         else {

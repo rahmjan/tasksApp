@@ -23,6 +23,7 @@
                 <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? 'has-error' : ''">
                     <label for="name" class="control-label">Name</label>
                     <input id="name" class="form-control" th:field="*{name}"/>
+                    <input id="prevName" type="hidden" th:field="*{prevName}" th:value="*{name}"/>
                     <p class="error-message" th:each="error: ${#fields.errors('name')}" th:text="${error}">Validation error</p>
                 </div>
 

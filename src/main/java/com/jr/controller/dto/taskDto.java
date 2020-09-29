@@ -10,6 +10,8 @@ public class taskDto {
     @NotEmpty
     private String name;
 
+    private String prevName;
+
     @NotEmpty
     private String description;
 
@@ -19,12 +21,31 @@ public class taskDto {
 
     private Set<User> users;
 
+    public taskDto() {};
+
+    public taskDto(Task t) {
+        setName(t.getName());
+        setPrevName(t.getName());
+        setDescription(t.getDescription());
+        setSolution(t.getSolution());
+        setStatus(t.getStatus());
+        setUsers(t.getUsers());
+    };
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPrevName() {
+        return prevName;
+    }
+
+    public void setPrevName(String name) {
+        this.prevName = name;
     }
 
     public String getDescription() {

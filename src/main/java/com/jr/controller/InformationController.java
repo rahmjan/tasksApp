@@ -1,5 +1,6 @@
 package com.jr.controller;
 
+import com.jr.model.Task;
 import com.jr.model.User;
 import com.jr.service.TaskService;
 import com.jr.service.UserService;
@@ -22,7 +23,7 @@ public class InformationController {
 
     @RequestMapping("/showTasks")
     @GetMapping
-    public String showMyTaskForm(@RequestParam(required = false, defaultValue = "me") String user, Model model) {
+    public String showTasksForm(@RequestParam(required = false, defaultValue = "me") String user, Model model) {
 
         if (user.equals("me")) {
             model.addAttribute("title", "My tasks");
@@ -39,5 +40,22 @@ public class InformationController {
         }
         
         return "showTasks";
+    }
+
+    @RequestMapping("/showUsers")
+    @GetMapping
+    public String showUsersForm(@RequestParam(required = false, defaultValue = "all") String task, Model model) {
+
+        if (task.equals("all")) {
+            model.addAttribute("title", "All users in the database");
+            model.addAttribute("iterUsers", userService.getAllUsers());
+        }
+        else {
+            Task t = taskService.findByName(task);
+            model.addAttribute("title", t.getName() + "'s users");
+            model.addAttribute("iterUsers", t.getUsers());
+        }
+        
+        return "showUsers";
     }
 }

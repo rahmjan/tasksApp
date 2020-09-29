@@ -32,7 +32,7 @@ public class TaskServiceImpl implements TaskService {
     public Task save(taskDto newTask) {
         
         Boolean save = false;
-        Task task = findByName(newTask.getName());
+        Task task = findByName(newTask.getPrevName());
 
         if (task == null) {
             task = new Task();

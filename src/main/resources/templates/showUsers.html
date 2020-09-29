@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <div th:replace="fragments/head :: head">Head</div>
+  </head>
+  
+  <body>
+    <div th:replace="fragments/menu :: menu">Menu</div>
+
+    <div class="container">
+      <div class="row col-md-8 mx-auto">
+        <h1 th:text="${title}"></h1>
+        
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Last name</th>
+              <th scope="col">First name</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="user, iter : ${iterUsers}" class="clickable" th:onclick="'window.location=\'user?email=' + ${user.email} + '\''"> 
+              <th scope="row" th:text="${iter.index+1}"></th>
+              <td th:text="${user.lastName}"></td>
+              <td th:text="${user.firstName}"></td>
+              <td th:text="${user.email}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </body>
+</html>
+
+
