@@ -1,5 +1,8 @@
 package com.jr.controller.dto;
 
+import java.util.Set;
+
+import com.jr.model.Role;
 import com.jr.model.User;
 
 import org.hibernate.validator.constraints.Email;
@@ -20,6 +23,8 @@ public class UserDto {
     @Email
     private String prevEmail;
 
+    private Set<Role> roles;
+
     public UserDto(){};
 
     public UserDto(User u) {
@@ -27,6 +32,7 @@ public class UserDto {
         setLastName(u.getLastName());
         setEmail(u.getEmail());
         setPrevEmail(u.getEmail());
+        setRoles(u.getRoles());
     }
 
     public String getFirstName() {
@@ -59,5 +65,13 @@ public class UserDto {
 
     public void setPrevEmail(String email) {
         this.prevEmail = email;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

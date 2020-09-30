@@ -24,24 +24,24 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public String getTaskForm(@RequestParam(required = true) String email, Model model) {
+    public String getUserForm(@RequestParam(required = true) String email, Model model) {
 
         User u = userService.findByEmail(email);
-        UserDto uD = new UserDto(u);
-
+        
         model.addAttribute("title", "User details");
-        model.addAttribute("userDto", uD);
+        model.addAttribute("userDto", new UserDto(u));
         model.addAttribute("actionAtt", "/user");
+        model.addAttribute("allRoles", userService.getAllRoles());
 
         return "user";
     }
 
     @PostMapping
-    public String updateTask(@ModelAttribute("userDto") @Valid UserDto userDto, 
+    public String updateUser(@ModelAttribute("userDto") @Valid UserDto userDto, 
                               BindingResult result){
 
         if (result.hasErrors()){
-            return "user";
+            return "redirect:/user?email=" + userDto.getEmail();
         }
 
         userService.update(userDto);

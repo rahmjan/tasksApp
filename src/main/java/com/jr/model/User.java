@@ -1,7 +1,6 @@
 package com.jr.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -24,14 +23,14 @@ public class User {
     @Column(columnDefinition="TEXT")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+    private Set<Role> roles;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
     private Set<Task> tasks;
@@ -46,7 +45,7 @@ public class User {
         this.password = password;
     }
 
-    public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
+    public User(String firstName, String lastName, String email, String password, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -94,11 +93,11 @@ public class User {
         this.password = password;
     }
 
-    public Collection<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
@@ -106,7 +105,7 @@ public class User {
         return tasks;
     }
 
-    public void setRoles(Set<Task> tasks) {
+    public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
     }
 

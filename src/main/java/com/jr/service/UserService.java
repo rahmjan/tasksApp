@@ -1,5 +1,6 @@
 package com.jr.service;
 
+import com.jr.model.Role;
 import com.jr.model.User;
 
 import java.util.Set;
@@ -21,4 +22,6 @@ public interface UserService extends UserDetailsService {
     User save(UserRegistrationDto registration);
 
     Boolean deleteByEmail(String email);
+
+    Set<Role> getAllRoles();
 }
