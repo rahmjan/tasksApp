@@ -52,4 +52,19 @@ public class Role {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object anObject) {  
+        if (this == anObject) {  
+            return true;  
+        }  
+        if (anObject instanceof Role) {  
+            Role anotherUser = (Role) anObject;  
+            if (this.id == anotherUser.id)
+            {
+                return true;
+            }
+        }  
+        return false;  
+    } 
 }

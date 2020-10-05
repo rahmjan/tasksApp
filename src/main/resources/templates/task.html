@@ -50,7 +50,8 @@
                 <div class="form-group" th:classappend="${#fields.hasErrors('users')} ? 'has-error' : ''">
                     <label for="searchField" class="control-label">Select participants</label>
                     <select id="searchField" class="form-control selectpicker" multiple="multiple" data-live-search="true" th:field="*{users}">
-                        <option th:each="user : ${allUsers}" th:value="${{user}}" th:text="${user.lastName}+' '+${user.firstName}+', '+${user.email}"></option>
+                        <option th:each="user : ${allUsers}" th:value="${user.id}" 
+                                th:text="${user.lastName}+' '+${user.firstName}+', '+${user.email}"></option>
                     </select>
                     <p class="error-message" th:each="error: ${#fields.errors('status')}" th:text="${error}">Validation error</p>
                 </div>               

@@ -96,7 +96,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
@@ -105,4 +105,19 @@ public class Task {
                 ", users=" + users +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object anObject) {  
+        if (this == anObject) {  
+            return true;  
+        }  
+        if (anObject instanceof Task) {  
+            Task anotherUser = (Task) anObject;  
+            if (this.id == anotherUser.id)
+            {
+                return true;
+            }
+        }  
+        return false;  
+    } 
 }

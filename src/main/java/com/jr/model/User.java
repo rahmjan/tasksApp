@@ -120,4 +120,19 @@ public class User {
                 ", roles=" + roles +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object anObject) {  
+        if (this == anObject) {  
+            return true;  
+        }  
+        if (anObject instanceof User) {  
+            User anotherUser = (User) anObject;  
+            if (this.id == anotherUser.id)
+            {
+                return true;
+            }
+        }  
+        return false;  
+    }  
 }
