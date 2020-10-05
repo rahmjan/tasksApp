@@ -69,7 +69,7 @@ public class TaskController {
         }
 
         taskService.save(taskDto);
-        return "redirect:/task?successCreate";
+        return "redirect:/task?name=" + taskDto.getName() + "&success";
     }
 
     @DeleteMapping
@@ -83,7 +83,7 @@ public class TaskController {
             return "task";
         }
 
-        return "redirect:/task?successCreate";
+        return "redirect:/task?success";
     }
 
 }

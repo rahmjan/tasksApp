@@ -27,7 +27,7 @@ public class UserController {
     public String getUserForm(@RequestParam(required = true) String email, Model model) {
 
         User u = userService.findByEmail(email);
-        
+
         model.addAttribute("title", "User details");
         model.addAttribute("userDto", new UserDto(u));
         model.addAttribute("actionAtt", "/user");
@@ -41,7 +41,7 @@ public class UserController {
                               BindingResult result){
 
         if (result.hasErrors()){
-            return "redirect:/user?email=" + userDto.getEmail();
+            return "user";
         }
 
         userService.update(userDto);

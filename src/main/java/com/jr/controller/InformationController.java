@@ -35,7 +35,7 @@ public class InformationController {
         }
         else {
             User u = userService.findByEmail(user);
-            model.addAttribute("title", u.getFirstName() + " " + u.getLastName() + "'s tasks'");
+            model.addAttribute("title", u.getFirstName() + " " + u.getLastName() + "'s tasks");
             model.addAttribute("iterTasks", u.getTasks());
         }
         

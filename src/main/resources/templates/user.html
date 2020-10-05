@@ -52,6 +52,7 @@
 
             <div>
                 <button form="form1" type="submit" class="btn btn-success">Save</button>
+                <a th:href="'/showTasks?user=' + ${userDto.email}" class="btn btn-info" role="button">Tasks</a>
                 <button form="form2" type="submit" class="btn btn-danger float-right">Delete</button>
             </div>  
         </div>
