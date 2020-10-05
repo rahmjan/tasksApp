@@ -15,16 +15,19 @@
                         <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active' : ''}">
                             <a class="nav-link" th:href="@{/}">Home</a>
                         </li>
-                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/task' ? 'active' : ''}">
+                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/task' ? 'active' : ''}"
+                            sec:authorize="hasRole('ROLE_MANAGER')">
                             <a class="nav-link" th:href="@{/task}">Create task</a>
                         </li>
                         <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/showTasks' and #httpServletRequest.getQueryString() == 'user=me' ? 'active' : ''}">
                             <a class="nav-link" th:href="@{/showTasks?user=me}">My tasks</a>
                         </li>
-                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/showTasks' and #httpServletRequest.getQueryString() == 'user=all' ? 'active' : ''}">
+                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/showTasks' and #httpServletRequest.getQueryString() == 'user=all' ? 'active' : ''}"
+                            sec:authorize="hasRole('ROLE_MANAGER')">
                             <a class="nav-link" th:href="@{/showTasks?user=all}">All tasks</a>
                         </li>
-                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/showUsers' and #httpServletRequest.getQueryString() == 'user=all' ? 'active' : ''}">
+                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/showUsers' and #httpServletRequest.getQueryString() == 'user=all' ? 'active' : ''}"
+                            sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
                             <a class="nav-link" th:href="@{/showUsers?user=all}">All users</a>
                         </li>
                     </ul>

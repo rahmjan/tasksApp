@@ -39,13 +39,25 @@
                      <p class="error-message" th:each="error: ${#fields.errors('email')}" th:text="${error}">Validation error</p>
                  </div>  
                  
-                <div class="form-group" th:classappend="${#fields.hasErrors('roles')} ? 'has-error' : ''">
-                    <label for="privileges" class="control-label">Select privileges</label>
-                    <select id="privileges" class="form-control selectpicker" multiple="multiple" data-live-search="true" th:field="*{roles}">
-                        <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${role.name}"></option>
-                    </select>
-                    <p class="error-message" th:each="error: ${#fields.errors('roles')}" th:text="${error}">Validation error</p>
+                <label for="privileges" class="control-label">Privileges</label>
+                <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('roles')} ? 'has-error' : ''">
+                        
+                        <select id="privileges" class="form-control selectpicker" multiple="multiple" data-live-search="true" th:field="*{roles}">
+                            <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${role.name}"></option>
+                        </select>
+                        <p class="error-message" th:each="error: ${#fields.errors('roles')}" th:text="${error}">Validation error</p>
+                    </div>
                 </div>
+                
+                <table id="searchField" class="table table-striped table-hover">
+                    <tbody>
+                        <tr th:each="role, iter : *{roles}"> 
+                        <th scope="row" th:text="${iter.index+1}"></th>
+                        <td th:text="${role.name}"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </form>
             
             <form id="form2" th:action="'/user?email=' + ${userDto.email}" th:method="delete"></form>

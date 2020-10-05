@@ -22,14 +22,14 @@
             <form id="form1" th:action="@{${actionAtt}}" th:object="${taskDto}" th:method="post">
                 <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? 'has-error' : ''">
                     <label for="name" class="control-label">Name</label>
-                    <input id="name" class="form-control" th:field="*{name}"/>
+                    <input id="name" class="form-control" th:field="*{name}" th:readonly="${#authorization.expression('!hasRole(''ROLE_MANAGER'')')}"/>
                     <input id="prevName" type="hidden" th:field="*{prevName}" th:value="*{name}"/>
                     <p class="error-message" th:each="error: ${#fields.errors('name')}" th:text="${error}">Validation error</p>
                 </div>
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('description')} ? 'has-error' : ''">
                     <label for="description" class="control-label">Description</label>
-                    <textarea id="description" class="form-control" rows="3" th:field="*{description}"></textarea>
+                    <textarea id="description" class="form-control" rows="3" th:field="*{description}" th:readonly="${#authorization.expression('!hasRole(''ROLE_MANAGER'')')}"></textarea>
                     <p class="error-message" th:each="error: ${#fields.errors('description')}" th:text="${error}">Validation error</p>
                 </div>
 
@@ -47,14 +47,25 @@
                     <p class="error-message" th:each="error: ${#fields.errors('status')}" th:text="${error}">Validation error</p>
                 </div>
                 
-                <div class="form-group" th:classappend="${#fields.hasErrors('users')} ? 'has-error' : ''">
-                    <label for="searchField" class="control-label">Participants</label>
-                    <select id="searchField" class="form-control selectpicker" multiple="multiple" data-live-search="true" th:field="*{users}">
-                        <option th:each="user : ${allUsers}" th:value="${user.id}" 
-                                th:text="${user.lastName}+' '+${user.firstName}+', '+${user.email}"></option>
-                    </select>
-                    <p class="error-message" th:each="error: ${#fields.errors('status')}" th:text="${error}">Validation error</p>
-                </div>               
+                <label for="searchField" class="control-label">Participants</label>
+                <div th:if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('users')} ? 'has-error' : ''">
+                        <select id="searchField" class="form-control selectpicker" multiple="multiple" data-live-search="true" th:field="*{users}">
+                            <option th:each="user : ${allUsers}" th:value="${user.id}" 
+                                    th:text="${user.lastName}+' '+${user.firstName}+', '+${user.email}"></option>
+                        </select>
+                        <p class="error-message" th:each="error: ${#fields.errors('status')}" th:text="${error}">Validation error</p>
+                    </div> 
+                </div>
+                
+                <table id="searchField" class="table table-striped table-hover">
+                    <tbody>
+                        <tr th:each="user, iter : *{users}" class="clickable" th:onclick="'window.location=\'user?email=' + ${user.email} + '\''"> 
+                        <th scope="row" th:text="${iter.index+1}"></th>
+                        <td th:text="${user.firstName} + ' ' + ${user.lastName}"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </form>
             
             <form id="form2" th:action="'/task?name=' + ${taskDto.name}" th:method="delete"></form>
