@@ -15,17 +15,17 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Description</th>
-              <th scope="col">Status</th>
+              <th scope="col">Last name</th>
+              <th scope="col">First name</th>
+              <th scope="col">Email</th>
             </tr>
           </thead>
           <tbody>
-            <tr th:each="task, iter : ${iterTasks}" class="clickable" th:onclick="'window.location=\'task?name=' + ${task.name} + '\''"> 
+            <tr th:each="user, iter : ${iterUsers}" class="clickable" th:onclick="'window.location=\'user?email=' + ${user.email} + '\''"> 
               <th scope="row" th:text="${iter.index+1}"></th>
-              <td th:text="${task.name}"></td>
-              <td th:text="${task.description}"></td>
-              <td th:text="${task.status}"></td>
+              <td th:text="${user.lastName}"></td>
+              <td th:text="${user.firstName}"></td>
+              <td th:text="${user.email}"></td>
             </tr>
           </tbody>
         </table>

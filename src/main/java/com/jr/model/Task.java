@@ -22,6 +22,12 @@ public class Task {
     @Column(columnDefinition="TEXT")
     private String solution;
 
+    @Column
+    private byte[] picture;
+
+    @Column(columnDefinition="TEXT")
+    private String pictureName;
+
     @Enumerated(EnumType.STRING)
     private Status status;
 
@@ -36,7 +42,6 @@ public class Task {
 
     public Task() {
     }
-
 
     public Task(String name, String description, String solution, Status status, Set<User> users) {
         this.name = name;
@@ -78,6 +83,22 @@ public class Task {
         this.solution = solution;
     }
 
+    public byte[] getPicture() {
+        return this.picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public String getPictureName() {
+        return pictureName;
+    }
+
+    public void setPictureName(String pictureName) {
+        this.pictureName = pictureName;
+    }
+
     public Status getStatus() {
         return status;
     }
@@ -96,7 +117,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
@@ -105,4 +126,19 @@ public class Task {
                 ", users=" + users +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object anObject) {  
+        if (this == anObject) {  
+            return true;  
+        }  
+        if (anObject instanceof Task) {  
+            Task anotherUser = (Task) anObject;  
+            if (this.id == anotherUser.id)
+            {
+                return true;
+            }
+        }  
+        return false;  
+    } 
 }

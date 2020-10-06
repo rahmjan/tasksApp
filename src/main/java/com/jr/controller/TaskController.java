@@ -12,9 +12,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Set;
 
@@ -35,13 +37,23 @@ public class TaskController {
         return userService.getAllUsers();
     }
 
+    @RequestMapping("/image/{taskName}")
+    @ResponseBody
+    public byte[] helloWorld(@PathVariable String taskName)  {
+        Task existing = taskService.findByName(taskName);
+        if (existing == null){
+            return new byte[0];
+        }
+        return existing.getPicture();
+    }
+
     @GetMapping
     public String getTaskForm(@RequestParam(required = false) String name, Model model) {
         Task existing = taskService.findByName(name);
 
         if (existing != null){
             model.addAttribute("title", "Task details");
-            model.addAttribute("taskDto", existing);
+            model.addAttribute("taskDto", new taskDto(existing));
             model.addAttribute("actionAtt", "/task");
         }
         else {
@@ -69,7 +81,7 @@ public class TaskController {
         }
 
         taskService.save(taskDto);
-        return "redirect:/task?successCreate";
+        return "redirect:/task?name=" + taskDto.getName() + "&success";
     }
 
     @DeleteMapping
@@ -83,7 +95,7 @@ public class TaskController {
             return "task";
         }
 
-        return "redirect:/task?successCreate";
+        return "redirect:/task?success";
     }
 
 }

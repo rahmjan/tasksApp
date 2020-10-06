@@ -32,7 +32,7 @@ public class TaskServiceImpl implements TaskService {
     public Task save(taskDto newTask) {
         
         Boolean save = false;
-        Task task = findByName(newTask.getName());
+        Task task = findByName(newTask.getPrevName());
 
         if (task == null) {
             task = new Task();
@@ -42,6 +42,10 @@ public class TaskServiceImpl implements TaskService {
         task.setName(newTask.getName());
         task.setDescription(newTask.getDescription());
         task.setSolution(newTask.getSolution());
+        try {
+            task.setPicture(newTask.getPicture().getBytes());
+            task.setPictureName(newTask.getPicture().getOriginalFilename());
+        } catch (Exception ex){};
         task.setStatus(newTask.getStatus());
         task.setUsers(newTask.getUsers());
 
