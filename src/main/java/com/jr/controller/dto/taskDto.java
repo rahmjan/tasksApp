@@ -2,6 +2,7 @@ package com.jr.controller.dto;
 
 import com.jr.model.*;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Set;
 
@@ -16,6 +17,8 @@ public class taskDto {
     private String description;
 
     private String solution;
+
+    private MultipartFile picture;
 
     private Task.Status status;
 
@@ -63,6 +66,14 @@ public class taskDto {
     public void setSolution(String solution) {
         this.solution = solution;
     }
+
+    public MultipartFile getPicture() {
+        return this.picture;
+    }
+
+    public void setPicture(MultipartFile picture) {
+        this.picture = picture;
+    };
 
     public Task.Status getStatus() {
         return status;

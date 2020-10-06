@@ -22,6 +22,12 @@ public class Task {
     @Column(columnDefinition="TEXT")
     private String solution;
 
+    @Column
+    private byte[] picture;
+
+    @Column(columnDefinition="TEXT")
+    private String pictureName;
+
     @Enumerated(EnumType.STRING)
     private Status status;
 
@@ -36,7 +42,6 @@ public class Task {
 
     public Task() {
     }
-
 
     public Task(String name, String description, String solution, Status status, Set<User> users) {
         this.name = name;
@@ -76,6 +81,22 @@ public class Task {
 
     public void setSolution(String solution) {
         this.solution = solution;
+    }
+
+    public byte[] getPicture() {
+        return this.picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public String getPictureName() {
+        return pictureName;
+    }
+
+    public void setPictureName(String pictureName) {
+        this.pictureName = pictureName;
     }
 
     public Status getStatus() {

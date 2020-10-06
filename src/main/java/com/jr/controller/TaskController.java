@@ -12,9 +12,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Set;
 
@@ -33,6 +35,16 @@ public class TaskController {
     @ModelAttribute("allUsers")
     public Set<User> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @RequestMapping("/image/{taskName}")
+    @ResponseBody
+    public byte[] helloWorld(@PathVariable String taskName)  {
+        Task existing = taskService.findByName(taskName);
+        if (existing == null){
+            return new byte[0];
+        }
+        return existing.getPicture();
     }
 
     @GetMapping
